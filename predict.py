@@ -9,15 +9,15 @@ except FileNotFoundError:
     exit()
 
 # ---------- Fonction de prédiction ----------
-def estimate_price(mil):
-    return theta0 + theta1 * mil
+def estimate_price(x):
+    return theta0 + theta1 * x
 
 # ---------- Interaction utilisateur ----------
 try:
-    mileage = float(input("Entrez le kilométrage : "))
+    x = float(input("Entrez le kilométrage : "))
 except ValueError:
     print("Erreur : veuillez entrer un nombre.")
     exit()
 
-price_estimate = estimate_price(mileage)
+price_estimate = estimate_price(x)
 print(f" Prix estimé : {price_estimate:.2f}")
