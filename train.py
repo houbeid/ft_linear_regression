@@ -1,7 +1,5 @@
 import csv
 
-#initialisation
-
 theta0 = 0
 theta1 = 0
 alpha = 0.01
@@ -14,7 +12,7 @@ y = []
 try:
     with open("data.csv", "r") as f:
         reader = csv.reader(f)
-        next(reader)  # ignorer l'en-tête
+        next(reader)
         for row in reader:
             x.append(float(row[0]))
             y.append(float(row[1]))
@@ -28,7 +26,6 @@ if m == 0:
     exit
 
 
-#normalisation
 x_max = max(x)
 y_max = max(y)
 
@@ -43,7 +40,8 @@ def comput_cost():
     for i in range(m):
         total_error += (estimatePrice(x[i]) - y[i]) ** 2
     return (total_error / m)
-# descente du gradient
+
+
 ex_cost = comput_cost()
 for iteration in range(max_iteration):
     temp_theta0 = 0
@@ -59,11 +57,10 @@ for iteration in range(max_iteration):
         print(f" Convergence atteinte à l'itération {iteration+1}")
         break;
     ex_cost = cost
-#denormalisation
 theta1 = theta1 * (y_max / x_max)
 theta0 = theta0 * y_max
 
-# ---------- Sauvegarde ----------
+
 with open("thetas.txt", "w") as f:
     f.write(f"{theta0}\n{theta1}")
 
